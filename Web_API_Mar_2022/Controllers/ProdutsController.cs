@@ -24,34 +24,69 @@ namespace Web_API_Mar_2022.Controllers
 
         // GET: api/<ProdutsController>
         [HttpGet]
-        public IEnumerable<ProductReadDto> Get()
+        public ActionResult Get()
         {
-            return _repo.GetAll();
+            return Ok( _repo.GetAll() );
         }
-
+            
         // GET api/<ProdutsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ActionResult Get(int id)
         {
-            return "value";
+            try
+            {
+                var res = _repo.GetById(id);
+                return Ok(res);
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message); // 404
+            }    
         }
 
         // POST api/<ProdutsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post(ProductCreateDto value)
         {
+            try
+            {
+                _repo.Create(value);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
         }
 
         // PUT api/<ProdutsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult Put(int id, ProductCreateDto value)
         {
+            try
+            {
+                _repo.Update(id, value);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
         }
 
         // DELETE api/<ProdutsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            try
+            {
+                _repo.Delete(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
         }
     }
 }

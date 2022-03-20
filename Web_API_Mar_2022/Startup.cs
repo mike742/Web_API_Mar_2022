@@ -35,6 +35,7 @@ namespace Web_API_Mar_2022
                 op.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             });
             services.AddScoped<IProductRepo, SqlProductRepo>();
+            services.AddScoped<IOrderRepo, SqlOrderRepo>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
