@@ -9,5 +9,9 @@ namespace Web_API_Mar_2022.Data.Interfaces
     public interface IOrderRepo
     {
         public IEnumerable<OrderReadDto> GetAll();
+        public OrderReadDto GetById(int id);
+        public void Create(OrderCreateDto order);
+        public void Update(int id, OrderCreateDto order);
+        public void Delete(int id);
     }
 }

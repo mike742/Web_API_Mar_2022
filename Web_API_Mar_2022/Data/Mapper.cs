@@ -58,5 +58,14 @@ namespace Web_API_Mar_2022.Data
                 Name = order.Name
             };
         }
+
+        public Order Map(OrderCreateDto order)
+        {
+            return new Order
+            {
+                Date = order.Date,
+                Name = order.Name
+            };
+        }
     }
 }
